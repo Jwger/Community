@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!--意思是 当前的网页是一个模板 来源于 thymeleaf官网-->
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher</title>
+</head>
+<body>
+<!--P的文本等于里面的一个变量-->
+<!--$大括号，意思是从model中取name的值-->
+<p th:text="${name}"></p>
+<p th:text="${age}"></p>
+</body>
+</html>

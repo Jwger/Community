@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--写UserMapper的权限name名  为哪个mapper服务-->
+<mapper namespace="com.nowcoder.community.dao.DiscussPostMapper">
+
+    <!--要用到的数据类 提取出来-->
+    <sql id="selectFields">
+        id,user_id,title,content,type,status,create_time,comment_count,score
+    </sql>
+<!--DiscussPost不是Java自带类型 所以需要申明-->
+    <select id="selectDiscussPost" resultType="DiscussPost">
+        select <include refid="selectFields"></include>
+        from discuss_post
+        /*不能是拉黑的*/
+        where status != 2
+        /*有可能传入userId 有可能不传入 需要判断*/
+        <if test="userId!= 0">
+            and user_id = #{userId}
+        </if>
+        /*desc 倒序 让置顶的上去  类型一样按照创建时间倒序*/
+        order by type desc ,create_time desc
+        /*分页*/
+        limit #{offset} ,#{limit}
+    </select>
+    <select id="selectDiscussPostRows" resultType="int">
+        select count(id)
+        from discuss_post
+        where status != 2
+        /*有可能传入userId 有可能不传入 需要判断*/
+        <if test="userId!=0">
+            and user_id = #{userId}
+        </if>
+    </select>
+</mapper>
