@@ -7,11 +7,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/alpha")//起个名
@@ -155,4 +157,13 @@ public class AlphaController {
         return list;
 
     }
+
+    //cookie
+//    @RequestMapping(path = "/cookie/set",method = RequestMethod.GET)
+//    @ResponseBody
+//    public String setCookie(HttpServletResponse response){
+//        //创建Cookie对象
+//        Cookie cookie = new Cookie("",CommunityUtil.generateUUID());
+//
+//    }
 }
