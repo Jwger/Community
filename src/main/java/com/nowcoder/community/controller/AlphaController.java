@@ -69,7 +69,7 @@ public class AlphaController {
     //响应主体
     @ResponseBody
     public String getStudent(
-            //意思是 request中的名为current的值 给下面这个current,也可以不穿 后一句意思，默认值是1
+            //意思是 request中的名为current的值 给下面这个current,requires表示也可以不传这个参数，默认值是1
             //响应属性
             @RequestParam(name = "current",required = false,defaultValue = "1") int current,
             @RequestParam(name = "limit",required = false,defaultValue = "10")  int limit){
@@ -82,7 +82,7 @@ public class AlphaController {
     //是个变量 用大括号括起来
     @RequestMapping(path = "/student/{id}",method = RequestMethod.GET)
     @ResponseBody
-    //PathVeriable路径变量
+    //PathVariable路径变量
     public String getStudent(@PathVariable("id") int id){
         System.out.println(id);
         return "a student";

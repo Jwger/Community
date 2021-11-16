@@ -10,6 +10,7 @@ import javax.annotation.PreDestroy;
 
 //业务组件
 @Service
+
 //@Scope("prototype") 多例 很少用
 public class AlphaService {
 

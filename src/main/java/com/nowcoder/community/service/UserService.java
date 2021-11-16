@@ -51,7 +51,7 @@ public class UserService implements CommunityConstant {
 
         Map<String,Object> map = new HashMap<>();
 
-        //空值chuli
+        //空值处理
         if (user ==null){
             throw new IllegalArgumentException("参数不能为空");
         }
@@ -157,5 +157,12 @@ public class UserService implements CommunityConstant {
 
     public void logout(String ticket) {
         loginTicketMapper.updateStatus(ticket, 1);
+    }
+    public LoginTicket findLoginTicket(String ticket){
+        return loginTicketMapper.selectByTicket(ticket);
+    }
+
+    public int updateHeader(int userId,String headerUrl){
+        return userMapper.updateHeader(userId,headerUrl);
     }
 }
