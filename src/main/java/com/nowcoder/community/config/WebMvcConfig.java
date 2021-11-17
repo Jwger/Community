@@ -21,16 +21,15 @@ public class WebMvcConfig  implements WebMvcConfigurer {
         registry.addInterceptor(alphaInterceptor)
                 //哪些资源可以不用拦截
                 //这些静态资源都不需要拦截
-                .excludePathPatterns("/**/*.css","/**/*.js","/**/*.jpg","/**/*.png","/**/*.jpeg")
+                .excludePathPatterns("/**/*.css","/**/*.js",
+                        "/**/*.jpg","/**/*.png","/**/*.jpeg")
                 //指定拦截哪些资源
                 .addPathPatterns("/register","/login");
 
         registry.addInterceptor(loginTicketInterceptor)
                 //哪些资源可以不用拦截
                 //这些静态资源都不需要拦截
-                .excludePathPatterns("/**/*.css","/**/*.js","/**/*.jpg","/**/*.png","/**/*.jpeg");
-
+                .excludePathPatterns("/**/*.css","/**/*.js",
+                        "/**/*.jpg","/**/*.png","/**/*.jpeg");
     }
-
-
 }

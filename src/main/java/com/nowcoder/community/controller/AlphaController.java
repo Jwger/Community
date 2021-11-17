@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/alpha")//起个名
@@ -53,7 +52,7 @@ public class AlphaController {
         System.out.println(request.getParameter("code"));
          //返回响应数据
         response.setContentType("text/html;charset = utf-8");
-        try ( PrintWriter writer = response.getWriter();
+        try ( PrintWriter writer = response.getWriter()
         ){
             writer.write("<h1>牛客网</h1>");
         } catch (IOException e) {

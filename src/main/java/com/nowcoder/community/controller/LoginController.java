@@ -95,6 +95,7 @@ public class LoginController implements CommunityConstant {
 
         //将图片输出给浏览器
         //申明给浏览器返回的是什么文件
+//       //这个流springMVC会自动关闭
         response.setContentType("image/png");
         try {
             ServletOutputStream os = response.getOutputStream();
@@ -119,6 +120,7 @@ public class LoginController implements CommunityConstant {
         Map<String, Object> map = userService.login(username, password, expiredSeconds);
         if (map.containsKey("ticket")){
             Cookie cookie = new Cookie("ticket",map.get("ticket").toString());
+            //整个项目都是有效路径 不要写死
             cookie.setPath(contextPath);
             cookie.setMaxAge(expiredSeconds);
             //发送给页面
