@@ -118,24 +118,26 @@ public class LoginController implements CommunityConstant {
         //先看用户有没有勾选上记住我
         int expiredSeconds = rememberme ? REMEMBER_EXPIRED_SECONDS:DEFAULT_EXPIRED_SECONDS;
         Map<String, Object> map = userService.login(username, password, expiredSeconds);
-        if (map.containsKey("ticket")){
-            Cookie cookie = new Cookie("ticket",map.get("ticket").toString());
+        if (map.containsKey("ticket")) {
+            Cookie cookie = new Cookie("ticket", map.get("ticket").toString());
             //整个项目都是有效路径 不要写死
             cookie.setPath(contextPath);
             cookie.setMaxAge(expiredSeconds);
             //发送给页面
             response.addCookie(cookie);
             return "redirect:/index";
-        }else {
-            model.addAttribute("usernameMsg",map.get("usernameMsg"));
-            model.addAttribute("passwordMsg",map.get("passwordMsg"));
+        } else {
+            model.addAttribute("usernameMsg", map.get("usernameMsg"));
+            model.addAttribute("passwordMsg", map.get("passwordMsg"));
             return "/site/login";
         }
     }
-    @RequestMapping(path = "/logout",method = RequestMethod.GET)
-    public String logout (@CookieValue("ticket") String ticket){
+
+    @RequestMapping(path = "/logout", method = RequestMethod.GET)
+    public String logout(@CookieValue("ticket") String ticket) {
         userService.logout(ticket);
         return "redirect:/login";
     }
+
 
 }

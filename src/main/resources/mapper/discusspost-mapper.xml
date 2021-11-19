@@ -9,9 +9,13 @@
     <sql id="selectFields">
         id,user_id,title,content,type,status,create_time,comment_count,score
     </sql>
-<!--DiscussPost不是Java自带类型 所以需要申明-->
+    <sql id="insertFields">
+        user_id, title, content, type, status, create_time, comment_count, score
+    </sql>
+    <!--DiscussPost不是Java自带类型 所以需要申明-->
     <select id="selectDiscussPost" resultType="DiscussPost">
-        select <include refid="selectFields"></include>
+        select
+        <include refid="selectFields"></include>
         from discuss_post
         /*不能是拉黑的*/
         where status != 2
@@ -33,4 +37,8 @@
             and user_id = #{userId}
         </if>
     </select>
+    <insert id="insertDiscussPost" parameterType="DiscussPost">
+        insert into discuss_post(<include refid="insertFields"></include>)
+        values(#{userId},#{title},#{content},#{type},#{status},#{createTime},#{commentCount},#{score})
+    </insert>
 </mapper>

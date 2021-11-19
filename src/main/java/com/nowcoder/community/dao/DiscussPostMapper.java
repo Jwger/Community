@@ -19,6 +19,7 @@ public interface DiscussPostMapper {
     //如果在circle里动态的条件(在<if>里面使用) 需要用到的条件 如果只有这一个 就必须起别名
     int selectDiscussPostRows(@Param("userId")int userId) ;
 
+    int insertDiscussPost(DiscussPost discussPost);
 
 
 }
