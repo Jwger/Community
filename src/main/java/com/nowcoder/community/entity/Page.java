@@ -54,30 +54,33 @@ public class Page {
     }
 
     //数据库查询的时候需要用到  或页面显示需要用到
-/**
-* 获取当前页的起始行
- *
-* @return int
-*/
-    public int getoffset(){
-        //current *limit -limit
-        return (current -1) *limit;
-    }
+
     /**
-    * 获取总的页数
+     * 获取当前页的起始行
      *
-    * @return int
-    */
-    public int getTotal(){
+     * @return int
+     */
+    public int getOffset() {
+        //current *limit -limit
+        return (current - 1) * limit;
+    }
+
+    /**
+     * 获取总的页数
+     *
+     * @return int
+     */
+    public int getTotal() {
         //rows /limit {+1}
-        if (rows%limit==0){
-            return rows/limit;
-        }else {
+        if (rows % limit == 0) {
+            return rows / limit;
+        } else {
             return rows / limit + 1;
         }
     }
+
     /**
-    *获取起始页码
+     *获取起始页码
      *
     * @return int
     */

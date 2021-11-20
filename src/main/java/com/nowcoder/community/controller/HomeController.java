@@ -35,7 +35,7 @@ public class HomeController {
         page.setRows(discussPostService.findDiscussPostRows(0));
         page.setPath("/index");
 
-        List<DiscussPost> list = discussPostService.findDiscussPosts(0,page.getoffset(),page.getLimit());
+        List<DiscussPost> list = discussPostService.findDiscussPosts(0, page.getOffset(), page.getLimit());
         //查到的是user ID 不是用户名
         List<Map<String , Object>> discussPosts = new LinkedList<>();
         if (list != null){
