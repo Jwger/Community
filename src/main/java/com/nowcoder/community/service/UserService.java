@@ -169,9 +169,6 @@ public class UserService implements CommunityConstant {
         return userMapper.updateHeader(userId, headerUrl);
     }
 
-    public User findUserByName(String username) {
-        return userMapper.selectByName(username);
-    }
 
     // 重置密码
     public Map<String, Object> resetPassword(String email, String password) {
@@ -229,5 +226,9 @@ public class UserService implements CommunityConstant {
         userMapper.updatePassword(userId, newPassword);
 
         return map;
+    }
+
+    public User findUserByName(String username) {
+        return userMapper.selectByName(username);
     }
 }
