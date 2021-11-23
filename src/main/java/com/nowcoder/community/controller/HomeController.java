@@ -45,12 +45,17 @@ public class HomeController {
                 map.put("post",post);
                 //找到userID
                 User user = userService.findUserById(post.getUserId());
-                map.put("user",user);
+                map.put("user", user);
                 discussPosts.add(map);
             }
         }
         //这一步可以省略 ①
-        model.addAttribute("discussPosts",discussPosts);
+        model.addAttribute("discussPosts", discussPosts);
         return "/index";
+    }
+
+    @RequestMapping(path = "/error", method = RequestMethod.GET)
+    public String getErrorPage() {
+        return "/error/500";
     }
 }
