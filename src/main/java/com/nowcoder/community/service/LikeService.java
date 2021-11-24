@@ -36,7 +36,7 @@ public class LikeService {
                 String entityLikeKey = RedisKeyUtil.getEntityLikeKey(entityType, entityId);
                 String userLikeKey = RedisKeyUtil.getUserLikeKey(entityUserId);
                 //当前实体 有没有对这个点过赞
-                boolean isMember = redisTemplate.opsForSet().isMember(entityLikeKey, userId);
+                boolean isMember = operations.opsForSet().isMember(entityLikeKey, userId);
                 operations.multi();
 
                 if (isMember) {
@@ -44,7 +44,7 @@ public class LikeService {
                     operations.opsForSet().remove(entityLikeKey, userId);
                     operations.opsForValue().decrement(userLikeKey);
                 } else {
-                    operations.opsForSet().remove(entityLikeKey, userId);
+                    operations.opsForSet().add(entityLikeKey, userId);
                     operations.opsForValue().increment(userLikeKey);
                 }
 
