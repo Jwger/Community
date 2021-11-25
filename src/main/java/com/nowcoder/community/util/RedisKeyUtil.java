@@ -1,5 +1,7 @@
 package com.nowcoder.community.util;
 
+import com.nowcoder.community.entity.User;
+
 public class RedisKeyUtil {
     private static final String SPLIT = ":";
 
@@ -7,6 +9,9 @@ public class RedisKeyUtil {
     private static final String PREFIX_USER_LIKE = "like:user";
     private static final String PREFIX_FOLLOWEE_LIKE = "followee";
     private static final String PREFIX_FOLLOWER_LIKE = "follower";
+    private static final String PREFIX_KAPTCHA = "kaptcha";
+    private static final String PREFIX_TICKET = "ticket";
+    private static final String PREFIX_USER = "user";
 
     //某个实体的赞
     //like:entity:entityType:entityId -> set(UserId)
@@ -31,4 +36,20 @@ public class RedisKeyUtil {
     public static String getFollowerKey(int entityType, int entityId) {
         return PREFIX_FOLLOWER_LIKE + SPLIT + entityType + SPLIT + entityId;
     }
+
+    //验证码
+    public static String getKaptchaKey(String owner) {
+        return PREFIX_KAPTCHA + SPLIT + owner;
+    }
+
+    //ticket
+    public static String getTicketKey(String ticket) {
+        return PREFIX_TICKET + SPLIT + ticket;
+    }
+
+    //user用户
+    public static String getUser(int userId) {
+        return PREFIX_USER + SPLIT + userId;
+    }
+
 }
